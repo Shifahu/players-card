@@ -5,7 +5,7 @@ const getPlayerStats = (selectedPlayer) => {
     arrOfstats.forEach(stat =>{
     const detail =  selectedPlayer.stats.find(detail => detail.name === stat).value
     console.log(detail, "detail")
-    const selectedElement = document.querySelector(`[data-id=$"{stat}"]`)
+    const selectedElement = document.querySelector(`[data-id="${stat}"]`)
     selectedElement.innerText = detail
 })
 
