@@ -1,11 +1,13 @@
 let data;
 
 const getPlayerStats = (selectedPlayer) => {
-    let arrOfstats = ['appearances','goals','assists','goals-per-match','passes-per-minute']
+    let arrOfstats = ['appearances','goals','goal_assist']
     arrOfstats.forEach(stat =>{
-    const itemObj =  selectedPlayer.stats.find(item => item.name === stat)
-    console.log(itemObj, "itemobj")
-    })
+    const detail =  selectedPlayer.stats.find(detail => detail.name === stat).value
+    console.log(detail, "detail")
+    const selectedElement = document.querySelector(`[data-id=$"{stat}"]`)
+    selectedElement.innerText = detail
+})
 
 }
 const changePlayer = () => {
@@ -13,7 +15,8 @@ const changePlayer = () => {
     console.log('changePlayer')
     const selectedPlayerId = Number(document.getElementById('players-names').value);
     console.log(selectedPlayerId)
-    const selectedPlayer = data.players.find(player => player.player.id === selectedPlayerId); 
+    const selectedPlayer = data.players.find(player => player.player.id === selectedPlayerId);
+    //helper function  to calculate the players stats!! and append to the selected players stats object
     console.log(selectedPlayer)
     const statsDiv = document.getElementById('stats');
     //players position => make this a function
@@ -21,7 +24,7 @@ const changePlayer = () => {
     // const lastPosition = position.split(' ').pop().trim();
     // console.log(lastPosition, 'lastPosition')
     statsDiv.innerHTML = selectedPlayer.player.name.first;
-    getPlayerStats(selectedPlayer)
+    // getPlayerStats(selectedPlayer)
     console.log("Player")
 }
 
