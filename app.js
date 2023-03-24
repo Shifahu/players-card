@@ -1,25 +1,38 @@
+let data;
+
+const changePlayer = () => {
+    //this function will render all the changes needed for the application
+    console.log('changePlayer')
+    const selectedPlayerId = Number(document.getElementById('players-names').value);
+    console.log(selectedPlayerId)
+    const selectedPlayer = data.players.find(player => player.player.id === selectedPlayerId); 
+    console.log(selectedPlayer)
+    const statsDiv = document.getElementById('stats');
+    //players position => make this a function
+    // const position = selectedPlayer.player.positionInfo
+    // const lastPosition = position.split(' ').pop().trim();
+    // console.log(lastPosition, 'lastPosition')
+    statsDiv.innerHTML = selectedPlayer.player.name.first;
+
+}
 
 const eventListener =(element) => {
-    console.log(element, "element")
-    element.addEventListener('change', console.log('rendering stats'));
-    // function to render the stats
-        // event.preventDefault();
-        
+    element.addEventListener('change', changePlayer);        
 }
-function loadPlayers() {
+const loadPlayers = () => {
     fetch('./player-stats.json')
         .then(response => response.json())
-        .then(data => {
-            const select = document.getElementById('players-names');
-            // console.log(select, "select");
-            
+        .then(responseData => {
+            data = responseData
+            const select = document.getElementById('players-names');            
             data.players.forEach(player => {
                 // access the player name via player.name.first + player.name.last
+                const playerID = player.player.id
                 const firstName = player.player.name.first;
                 const lastName = player.player.name.last;
                 // create the child element tag option for the dropdown
                 const option = document.createElement('option');
-                option.value = firstName;
+                option.value = playerID;
                 option.text = `${firstName} ${lastName}`;
                 // append these children elements to the select-dropdown element
                 select.appendChild(option);
@@ -32,8 +45,5 @@ function loadPlayers() {
             console.error(error);
         });
 }
-
-
-
 loadPlayers();
 
