@@ -1,5 +1,13 @@
 let data;
 
+const getPlayerStats = (selectedPlayer) => {
+    let arrOfstats = ['appearances','goals','assists','goals-per-match','passes-per-minute']
+    arrOfstats.forEach(stat =>{
+    const itemObj =  selectedPlayer.stats.find(item => item.name === stat)
+    console.log(itemObj, "itemobj")
+    })
+
+}
 const changePlayer = () => {
     //this function will render all the changes needed for the application
     console.log('changePlayer')
@@ -13,7 +21,8 @@ const changePlayer = () => {
     // const lastPosition = position.split(' ').pop().trim();
     // console.log(lastPosition, 'lastPosition')
     statsDiv.innerHTML = selectedPlayer.player.name.first;
-
+    getPlayerStats(selectedPlayer)
+    console.log("Player")
 }
 
 const eventListener =(element) => {
