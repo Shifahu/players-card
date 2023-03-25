@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Player Card Stats</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <select name="players-names" id="players-names">
-        <option value="select-player">Select a player...</option>
+      <option value="select-player" disabled selected>
+        Select a player...
+      </option>
     </select>
-    <img src="./assets/p4916.png" alt="football-player">
-    <div id="stats">this is Stats
-        <div data-id="appearances">xy</div>
-        <div data-id="goals">xy</div>
-        <div data-id="goal_assist">xy</div>
-        <div data-id="goals-per-match">xy</div>
-        <div data-id="passes-per-minute">xy</div>
+    <img id="myImg" src="" alt="" />
+    <div id="fullName"></div>
+    <div id="position"></div>
+    <div class="list-of-stats">
+      <div>
+        appearances:
+        <div data-id="appearances"></div>
+      </div>
+      <div>
+        goals:
+        <div data-id="goals"></div>
+      </div>
+      <div>
+        goal assist:
+        <div data-id="goal_assist"></div>
+      </div>
+      <div>
+        goals per match:
+        <div data-id="goals-per-match"></div>
+      </div>
+      <div>
+        passes per minute:
+        <div data-id="passes-per-minute"></div>
+      </div>
     </div>
     <script src="./app.js"></script>
-</body>
-
+  </body>
 </html>

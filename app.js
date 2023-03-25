@@ -1,61 +1,97 @@
 let data;
 
 const getPlayerStats = (selectedPlayer) => {
-    let arrOfstats = ['appearances','goals','goal_assist']
-    arrOfstats.forEach(stat =>{
-    const detail =  selectedPlayer.stats.find(detail => detail.name === stat).value
-    console.log(detail, "detail")
-    const selectedElement = document.querySelector(`[data-id="${stat}"]`)
-    selectedElement.innerText = detail
-})
+  let arrOfstats = [
+    "appearances",
+    "goals",
+    "goal_assist",
+    "goals-per-match",
+    "passes-per-minute",
+  ];
+  arrOfstats.forEach((stat) => {
+    const detail = selectedPlayer.stats.find(
+      (detail) => detail.name === stat
+    ).value;
+    const selectedElement = document.querySelector(`[data-id="${stat}"]`);
+    selectedElement.innerText = detail;
+  });
+};
 
-}
+const getPlayerImg = (selectedPlayerId, fullName) => {
+  const img = document.getElementById("myImg");
+  img.src = `./assets/p${selectedPlayerId}.png`;
+  img.alt = `Image of ${fullName}`;
+};
+
+const calculatePlayerStats = (selectedPlayer) => {
+  const goals = selectedPlayer.stats.find(
+    (stat) => stat.name === "goals"
+  ).value;
+  const appearances = selectedPlayer.stats.find(
+    (stat) => stat.name === "appearances"
+  ).value;
+  const goalsPerMatch = (goals / appearances).toFixed(2);
+  const fwd_pass = selectedPlayer.stats.find(
+    (stat) => stat.name === "fwd_pass"
+  ).value;
+  const backward_pass = selectedPlayer.stats.find(
+    (stat) => stat.name === "backward_pass"
+  ).value;
+  const mins_played = selectedPlayer.stats.find(
+    (stat) => stat.name === "mins_played"
+  ).value;
+  const passesPerMin = ((fwd_pass + backward_pass) / mins_played).toFixed(2);
+
+  selectedPlayer.stats.push({ name: "goals-per-match", value: goalsPerMatch });
+  selectedPlayer.stats.push({ name: "passes-per-minute", value: passesPerMin });
+};
+
+const playersPosition = (selectedPlayer) => {
+  const position = selectedPlayer.player.info.positionInfo;
+  const lastPosition = position.split(" ").pop().trim();
+  const positionDiv = document.getElementById("position");
+  positionDiv.innerHTML = lastPosition;
+};
+
 const changePlayer = () => {
-    //this function will render all the changes needed for the application
-    console.log('changePlayer')
-    const selectedPlayerId = Number(document.getElementById('players-names').value);
-    console.log(selectedPlayerId)
-    const selectedPlayer = data.players.find(player => player.player.id === selectedPlayerId);
-    //helper function  to calculate the players stats!! and append to the selected players stats object
-    console.log(selectedPlayer)
-    const statsDiv = document.getElementById('stats');
-    //players position => make this a function
-    // const position = selectedPlayer.player.positionInfo
-    // const lastPosition = position.split(' ').pop().trim();
-    // console.log(lastPosition, 'lastPosition')
-    statsDiv.innerHTML = selectedPlayer.player.name.first;
-    // getPlayerStats(selectedPlayer)
-    console.log("Player")
-}
+  const selectedPlayerId = Number(
+    document.getElementById("players-names").value
+  );
+  const selectedPlayer = data.players.find(
+    (player) => player.player.id === selectedPlayerId
+  );
+  calculatePlayerStats(selectedPlayer);
+  playersPosition(selectedPlayer);
+  const statsDiv = document.getElementById("fullName");
+  const fullName = `${selectedPlayer.player.name.first} ${selectedPlayer.player.name.last}`;
+  getPlayerImg(selectedPlayerId, fullName);
+  statsDiv.innerHTML = fullName;
 
-const eventListener =(element) => {
-    element.addEventListener('change', changePlayer);        
-}
+  getPlayerStats(selectedPlayer);
+};
+
+const eventListener = (element) => {
+  element.addEventListener("change", changePlayer);
+};
 const loadPlayers = () => {
-    fetch('./player-stats.json')
-        .then(response => response.json())
-        .then(responseData => {
-            data = responseData
-            const select = document.getElementById('players-names');            
-            data.players.forEach(player => {
-                // access the player name via player.name.first + player.name.last
-                const playerID = player.player.id
-                const firstName = player.player.name.first;
-                const lastName = player.player.name.last;
-                // create the child element tag option for the dropdown
-                const option = document.createElement('option');
-                option.value = playerID;
-                option.text = `${firstName} ${lastName}`;
-                // append these children elements to the select-dropdown element
-                select.appendChild(option);
-                // adding an event listener to the option element  
-            }
-            )
-            eventListener(select);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-}
+  fetch("./player-stats.json")
+    .then((response) => response.json())
+    .then((responseData) => {
+      data = responseData;
+      const select = document.getElementById("players-names");
+      data.players.forEach((player) => {
+        const playerID = player.player.id;
+        const firstName = player.player.name.first;
+        const lastName = player.player.name.last;
+        const option = document.createElement("option");
+        option.value = playerID;
+        option.text = `${firstName} ${lastName}`;
+        select.appendChild(option);
+      });
+      eventListener(select);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
 loadPlayers();
-
