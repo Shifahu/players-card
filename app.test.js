@@ -1,6 +1,6 @@
 const { JSDOM } = require('jsdom');
 
-const {
+import {
     getPlayerStats,
     getPlayerImg,
     calculatePlayerStats,
@@ -8,7 +8,7 @@ const {
     changePlayer,
     eventListener,
     loadPlayers,
-  } = require('./app.js');
+  } from './app.js';
 
   
   

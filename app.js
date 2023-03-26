@@ -18,7 +18,7 @@ const getPlayerStats = (selectedPlayer) => {
 };
 
 const getPlayerImg = (selectedPlayerId, fullName) => {
-  const img = document.getElementById("myImg");
+  const img = document.getElementById("playerImg");
   img.src = `./assets/p${selectedPlayerId}.png`;
   img.alt = `Image of ${fullName}`;
 };
@@ -109,13 +109,12 @@ const errorModal = () => {
 
 
 
-module.exports = {
+export default {
   getPlayerStats,
   getPlayerImg,
   calculatePlayerStats,
   playersPosition,
   changePlayer,
   eventListener,
-  loadPlayers,
-  generateList
+  loadPlayers
 };
