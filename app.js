@@ -106,20 +106,7 @@ const errorModal = () => {
   modal.innerHTML = "Your request cannot be processed at the moment, please try again later "
 }
 
-const fruits = ["apple", "banana", "orange"];
 
-const generateList = (items) => {
-  const list = document.createElement("ul");
-  items.forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    list.appendChild(li);
-  });
-  return list;
-};
-
-const app = document.getElementById("app");
-app.appendChild(generateList(fruits));
 
 
 module.exports = {
