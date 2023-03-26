@@ -1,0 +1,119 @@
+//colors
+$purple: #38003c;
+$grey: #eaeaea;
+$pink: #e90052;
+$white: #ffffff;
+
+//fonts
+$font-arial: Arial, Helvetica, sans-serif;
+$font-weight-normal: 100;
+$font-weight-bold: bold;
+$font-size-small: 16px;
+$font-size-medium: 19px;
+$font-size-large: 22px;
+
+//Media queries
+$tablet: 768px;
+$desktop: 1024px;
+
+@mixin flexBox($alignment, $vertical-alignment, $flexDir) {
+  display: flex;
+  flex-direction: $flexDir;
+  align-items: $alignment;
+  justify-content: $vertical-alignment;
+}
+
+@mixin textCustom($color, $font-size, $font-family, $font-weight) {
+  color: $color;
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+@mixin boxCustom($width) {
+  height: 40px;
+  width: $width;
+}
+
+body{
+    @include flexBox(center, center, column)
+}
+
+
+
+select#players-names {
+  @include boxCustom(268px);
+
+  background-color: $grey;
+  font-family: $font-arial;
+  font-size: $font-size-small;
+  border: none;
+}
+
+
+h1.player-title {
+  @include flexBox(flex-start, center, column);
+  padding: 10px 0 0 17px;
+}
+
+ul.list-of-stats {
+  list-style: none;
+  padding: 0;
+  @include flexBox(center, center, column);
+}
+
+figure{
+    display: contents;
+}
+
+img{
+    padding: 10px 0 0 0;
+}
+
+article {
+  background-color: $pink;
+  height: 306px;
+}
+
+span#fullName {
+  @include textCustom(
+    $white,
+    $font-size-large,
+    $font-arial,
+    $font-weight-normal
+  );
+  padding: 0 0 8px 0;
+}
+
+span#position {
+  @include textCustom(
+    $white,
+    $font-size-small,
+    $font-arial,
+    $font-weight-normal
+  );
+}
+
+li.single-state {
+  @include boxCustom(250px);
+
+  @include flexBox(center, space-between, initial);
+
+  @include textCustom(
+    $purple,
+    $font-size-small,
+    $font-arial,
+    $font-weight-normal
+  );
+
+  background-color: $grey;
+  margin: 2px 0;
+  padding: 0 9px;
+}
+
+span.statNum {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+
