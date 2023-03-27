@@ -82,11 +82,10 @@ const loadPlayers = () => {
       const select = document.getElementById("players-names");
       data.players.forEach((player) => {
         const playerID = player.player.id;
-        const firstName = player.player.name.first;
-        const lastName = player.player.name.last;
+        const { first, last } = player.player.name
         const option = document.createElement("option");
         option.value = playerID;
-        option.text = `${firstName} ${lastName}`;
+        option.text = `${first} ${last}`;
         select.appendChild(option);
       });
       eventListener(select);
@@ -107,14 +106,13 @@ const errorModal = () => {
 }
 
 
-
-
-export default {
+module.exports = {
   getPlayerStats,
   getPlayerImg,
   calculatePlayerStats,
   playersPosition,
   changePlayer,
   eventListener,
-  loadPlayers
+  loadPlayers,
 };
+
