@@ -8,18 +8,24 @@ To get started, clone the repository and enter the following commands in the CLI
 
 
 npm i    // install the http server
+
 npm start    // run the server
+
 Navigate to http://127.0.0.1:8080 in your browser.
 
 Technologies Used
 
 Vanilla JavaScript
 HTML
+
 SASS (CSS)
+
 Jest (JavaScript testing framework)
+
 Extensions used:
 
 Live SASS compiler to convert SASS to CSS
+
 axe Google Chrome extension to assess accessibility - https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd
 
 Development Process
