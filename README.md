@@ -34,6 +34,8 @@ Design-wise, I stuck to a simple and clean design, attempting to copy the exampl
 
 Testing
 
+I did a mini QA testing, but testing the app renders and work across all four browsers, Safari, Google Chrome, Microsoft Edge and Firefox. I also ensured that they behaved and looked as expected across different screensizes, as I developed the app mobile first.
+
 The Jest tests written did not seem to run. With more time, I would investigate why these unit tests were not working. I would also write snapshot tests by taking a snapshot of the rendered output of the card component and comparing it to a previously stored snapshot. This helps to ensure that the component is rendered correctly over time. To test that the dropdown is populated correctly, I would take a snapshot of the dropdown component after it has been populated with options and compare it to the previously stored snapshot. To test that the image has rendered correctly, I would check that the src and alt attributes of the img element are correct. To test stats that have been properly rendered, I would take a snapshot of the component after the stats have been rendered and compare it to the previously stored snapshot.
 
 Gulp
