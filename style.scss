@@ -116,4 +116,16 @@ span.statNum {
   font-weight: bold;
 }
 
+.error-modal{
+  width: 300px;
+  background: $grey;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  text-align: center;
+  color: $purple;
+  @include flexBox(center, center, column);
+
+
+}
 
