@@ -24,6 +24,7 @@ const getPlayerImg = (selectedPlayerId, fullName) => {
 };
 
 const calculatePlayerStats = (selectedPlayer) => {
+  console.log(selectedPlayer,"selectedPlayer")
   const goals = selectedPlayer.stats.find(
     (stat) => stat.name === "goals"
   ).value;
